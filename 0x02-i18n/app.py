@@ -37,7 +37,6 @@ def get_user() -> Union[Dict, None]:
 def before_request() -> None:
     """before request function"""
     g.user = get_user()
-    g.time = format_datetime()
 
 
 @babel.timezoneselector
@@ -70,6 +69,7 @@ def get_locale() -> str:
 @app.route("/")
 def index() -> str:
     """the home page"""
+    g.time = format_datetime()
     return render_template('index.html')
 
 
