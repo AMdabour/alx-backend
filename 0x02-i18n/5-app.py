@@ -29,13 +29,13 @@ app.url_map.strict_slashes = False
 def get_user() -> Union[Dict, None]:
     """get user from id in url"""
     user_id = request.args.get('login_as')
-    if user_id and int(user_id) in users.keys():
+    if user_id:
         return users.get(int(user_id))
     return None
 
 
 @app.before_request
-def before_request():
+def before_request() -> None:
     """before request function"""
     g.user = get_user()
 
